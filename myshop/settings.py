@@ -53,7 +53,7 @@ ROOT_URLCONF = 'myshop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'shop/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -114,4 +114,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-AUTH_USER_MODEL = 'models.ShopUser'
+AUTH_USER_MODEL = 'shop.ShopUser'
