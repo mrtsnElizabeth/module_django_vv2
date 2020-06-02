@@ -8,8 +8,8 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, FormView
 from django.views.generic.base import View
 
-from forms import LoginForm, SignUpForm
-from models import ShopUser
+from .forms import LoginForm, SignUpForm
+from .models import ShopUser
 
 
 class SignupUser(CreateView):
@@ -21,14 +21,9 @@ class SignupUser(CreateView):
         return reverse_lazy('home')
 
 
-@login_required
-def home(request):
-    return render(request, 'registration/login.html')
-
-
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
@@ -37,20 +32,8 @@ def signup(request):
             login(request, user)
             return redirect('home')
     else:
-        form = UserCreationForm()
+        form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
-
-
-def login_view(request):
-    if request.user.is_authenticated:
-        return redirect('/')
-    form = LoginForm()
-
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            pass
-    return render(request, 'registration/login.html', {'form': form})
 
 
 class LoginView(FormView):
@@ -76,6 +59,7 @@ class LoginView(FormView):
 
 class LogoutView(View):
     http_method_names = ['post']
+    template_name = 'registration/login.html'
 
     def post(self, request, *args, **kwargs):
         logout(self.request)
