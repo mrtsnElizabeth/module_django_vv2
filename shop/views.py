@@ -12,7 +12,7 @@ from .forms import LoginForm, SignUpForm
 from .models import ShopUser
 
 
-class SignupUser(CreateView):
+class SignupUserCreateView(CreateView):
     model = ShopUser
     form_class = SignUpForm
     template_name = 'registration/signup.html'
