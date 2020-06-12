@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -57,10 +58,14 @@ class LoginView(FormView):
         return redirect('/')
 
 
-class LogoutView(View):
-    http_method_names = ['post']
-    template_name = 'registration/login.html'
+def logout_v(request):
+    logout(request)
+    return HttpResponseRedirect(reverse_lazy('login'))
 
-    def post(self, request, *args, **kwargs):
-        logout(self.request)
-        return redirect('/')
+# class LogoutView(View):
+#     http_method_names = ['post']
+#     template_name = 'registration/login.html'
+#
+#     def post(self, request, *args, **kwargs):
+#         logout(self.request)
+#         return redirect('/')

@@ -6,6 +6,7 @@ from django.db import models
 
 # Create your models here.
 
+
 class ShopUser(AbstractUser):
     date_of_birth = models.DateField(blank=True, null=True)
     email_confirmed = models.BooleanField(default=False)
