@@ -9,7 +9,7 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = ShopUser
-        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'date_of_birth',)
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2',)
 
     def save(self, commit=True):
         user = super(SignUpForm, self).save(commit=False)

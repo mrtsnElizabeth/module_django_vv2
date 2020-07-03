@@ -8,7 +8,6 @@ from django.db import models
 
 
 class ShopUser(AbstractUser):
-    date_of_birth = models.DateField(blank=True, null=True)
     email_confirmed = models.BooleanField(default=False)
     wallet = models.IntegerField(default=10000)
 

@@ -22,7 +22,7 @@ from shop import views as core_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', core_views.home, name='home'),
-    path('login/', auth_views.LoginView.as_view(), {'template_name': 'login.html'}, name='login'),
+    path('', auth_views.LoginView.as_view(), {'template_name': 'login.html'}, name='login'),
     path('signup/', core_views.signup, name='signup'),
     path('logout/', core_views.logout_v, name='logout'),
 ]
